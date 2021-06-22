@@ -87,7 +87,7 @@ for (const arch of architectures) {
         "-DANDROID_TOOLCHAIN=clang",
         "-DANDROID_NATIVE_API_LEVEL=16",
         `-DCMAKE_BUILD_TYPE=${buildType}`,
-        "-DANDROID_STL=c++_static",
+        "-DANDROID_STL=c++_shared",
         `-DJSC_ROOT_DIR=${jscDir}`,
         process.cwd()
     ];

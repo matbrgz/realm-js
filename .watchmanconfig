@@ -3,6 +3,13 @@
     "node_modules",
     "react-native/node_modules",
     "packages",
-    "tests"
+    "tests",
+    "build",
+    "build-realm-android",
+    "docs",
+    "examples",
+    "integration-tests/environments/node",
+    "integration-tests/environments/electron",
+    "scripts"
   ]
 }

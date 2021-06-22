@@ -202,6 +202,9 @@ export class App extends Component {
                     android: Platform.OS === "android",
                     ios: Platform.OS === "ios",
                     chromeDebugging: mode === "chrome-debugging",
+                    engine,
+                    hermes: engine === "hermes",
+                    jsc: engine === "jsc"
                 };
                 // Make the tests reinitializable, to allow test running on changes to the "realm" package
                 const modules = require.getModules();

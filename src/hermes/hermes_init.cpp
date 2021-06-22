@@ -25,13 +25,22 @@
 #endif
 
 #include "js_realm.hpp"
+#include "platform.hpp"
 
 namespace realm::js::hermes {
-extern "C" void realm_hermes_init(jsi::Runtime& rt, jsi::Object& exports) {
+extern "C" void realm_hermes_init(jsi::Runtime& rt, jsi::Object& exports) try {
+    print("realm_hermes_init called");
     auto env = JsiEnv(rt);
     jsi::Function realm_constructor = js::RealmClass<Types>::create_constructor(env);
     auto name = realm_constructor.getProperty(env, "name").asString(env);
     exports.setProperty(env, std::move(name), std::move(realm_constructor));
+    print("realm_hermes_init done");
+} catch (const std::exception& e) {
+    print("std::ecetion %s", e.what());
+    throw;
+} catch  (...) {
+    print("bogus exceptin");
+    throw;
 }
 }
 

@@ -61,7 +61,7 @@ describe("Realm#constructor", () => {
         );
     });
 
-    describe("called with invalid arguments", () => {
+    describe.skipIf(environment.engine === "hermes", "called with invalid arguments", () => {
         it("throws when called with an empty string", () => {
             expect(() => {
                 const r = new Realm("");
@@ -135,7 +135,7 @@ describe("Realm#constructor", () => {
             expect(persons[0].age).to.equal(42);
         });
 
-        it("throws if version is bumped while open", () => {
+        it.skipIf(environment.engine === "hermes", "throws if version is bumped while open", () => {
             // Open it ...
             const realm = new Realm({ schema: [] });
             expect(realm.schemaVersion).to.equal(0);
