@@ -53,7 +53,7 @@ class JavascriptObject {
     static std::string to_string(JSContextRef context, JSStringRef value) {
         std::string str;
         size_t sizeUTF8 = JSStringGetMaximumUTF8CStringSize(value);
-        str.reserve(sizeUTF8);
+        str.resize(sizeUTF8);
         JSStringGetUTF8CString(value, str.data(), sizeUTF8);
         return str;
     }
@@ -89,8 +89,7 @@ class JavascriptObject {
 
     static bool contains_key(JSContextRef ctx, JSObjectRef object,
                              std::string key) {
-        auto keys = get_private(object)->keys;
-        return keys[key.c_str()] == true;
+        return get_private(object)->keys.count(key);
     }
 
     static void get_property_names(JSContextRef ctx, JSObjectRef object,
@@ -109,7 +108,7 @@ class JavascriptObject {
         std::string key = to_string(ctx, propertyName);
 
         if (!contains_key(ctx, object, key)) {
-            return JSValueMakeNull(ctx);
+            return JSValueMakeNull(ctx); // XXX undefined?
         }
 
         IOCollection *collection = get_private(object)->collection;

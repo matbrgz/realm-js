@@ -48,3 +48,4 @@ require("./tests/dynamic-schema-updates");
 require("./tests/bson");
 require("./tests/credentials/anonymous");
 require("./tests/sync/mixed");
+require("./tests/dictionary");
