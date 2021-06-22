@@ -1,22 +1,29 @@
-platform :ios, '9.0'
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'ReactTestApp' do
-  pod 'React', :path => '../node_modules/react-native', :subspecs => [
-    'Core',
-    'CxxBridge',
-    'RCTImage',
-    'RCTNetwork',
-    'RCTText',
-    'RCTWebSocket',
-  ], :inhibit_warnings => true
-  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga', :inhibit_warnings => true
+platform :ios, '10.0'
 
-  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec', :inhibit_warnings => true
-  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec', :inhibit_warnings => true
-  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec', :inhibit_warnings => true
-  pod 'RNFS', :path => '../node_modules/react-native-fs', :inhibit_warnings => true
+target 'RnDiffApp' do
+  config = use_native_modules!
 
-  target 'RealmReactTests' do
-    inherit! :search_paths
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
+
+  target 'RnDiffAppTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable the next line.
+  use_flipper!()
+
+  post_install do |installer|
+    react_native_post_install(installer)
   end
 end

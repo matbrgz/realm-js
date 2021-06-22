@@ -21,7 +21,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
 
 # Android/IntelliJ
 #
@@ -41,6 +40,7 @@ buck-out/
 \.buckd/
 android/app/libs
 *.keystore
+!debug.keystore
 
 # fastlane
 #
@@ -52,3 +52,6 @@ android/app/libs
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+
+# CocoaPods
+/ios/Pods/

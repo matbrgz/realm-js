@@ -41,7 +41,7 @@ const runTests = require('./tests');
 // import { runTests } from './tests';
 ////////////
 
-class ReactTests extends React.Component {
+export default class ReactTests extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('ReactTests', () => ReactTests);
+//AppRegistry.registerComponent('ReactTests', () => ReactTests);
